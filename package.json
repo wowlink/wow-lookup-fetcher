@@ -18,5 +18,8 @@
   "homepage": "https://github.com/wowlink/wow-lookup-fetcher#readme",
   "devDependencies": {
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "wow-interface": "file:../wow-interface"
   }
 }
