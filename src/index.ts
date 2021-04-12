@@ -1,6 +1,9 @@
 import { WowLookupFetcher, WowLookupFetcherConfig, WowLookupFetchRequest, WowLookupFetchResponse } from "wow-interface";
 import { Octokit } from "@octokit/rest";
 
+// TODO(tianhaoz95): use sub-classes instead of different internal methods
+// for different fetcher types.
+
 class GitHubWowLookupFetcher implements WowLookupFetcher {
     config_: WowLookupFetcherConfig;
 
