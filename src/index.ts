@@ -1,8 +1,21 @@
-import { WowLookupFetcher, WowLookupFetcherConfig, WowLookupFetchRequest, WowLookupFetchResponse } from "wow-interface";
+import {
+    WowLookupFetcher,
+    WowLookupFetcherConfig,
+    WowLookupFetchRequest,
+    WowLookupFetchResponse,
+    BuiltInLookupFetcherType
+} from "wow-interface";
 import { Octokit } from "@octokit/rest";
 
-// TODO(tianhaoz95): use sub-classes instead of different internal methods
-// for different fetcher types.
+const WowLookupFetcherFactory = (
+    type: BuiltInLookupFetcherType, config: WowLookupFetcherConfig
+): WowLookupFetcher => {
+    if (type == BuiltInLookupFetcherType.GitHub) {
+        return new GitHubWowLookupFetcher(config);
+    } else {
+        throw new Error(`Lookup source ${type} not supported.`);
+    }
+};
 
 class GitHubWowLookupFetcher implements WowLookupFetcher {
     config_: WowLookupFetcherConfig;
@@ -12,18 +25,6 @@ class GitHubWowLookupFetcher implements WowLookupFetcher {
     }
 
     async fetch(req: WowLookupFetchRequest): Promise<WowLookupFetchResponse> {
-        if (this.config_.mappingSource == "github") {
-            return await this._fetchGitHub(req);
-        } else {
-            throw new Error(`Lookup source ${this.config_.mappingSource} not supported.`);
-        }
-    }
-
-    async _fetchLocalFile(req: WowLookupFetchRequest): Promise<WowLookupFetchResponse> {
-        throw new Error("Not implemented");
-    }
-
-    async _fetchGitHub(req: WowLookupFetchRequest): Promise<WowLookupFetchResponse> {
         if (this.config_.githubUser && this.config_.githubRepository) {
             const octokit = new Octokit();
             const configResponse = await octokit.rest.repos.getContent({
@@ -31,7 +32,8 @@ class GitHubWowLookupFetcher implements WowLookupFetcher {
                 repo: this.config_.githubRepository,
                 path: "config.yaml",
             });
-            const configStr = Buffer.from(configResponse.data["content"], "base64").toString();
+            const configStr = Buffer.from(
+                configResponse.data["content"], "base64").toString();
         } else {
             throw new Error(`Config is broken: ${JSON.stringify(this.config_)}`);
         }
@@ -42,4 +44,7 @@ class GitHubWowLookupFetcher implements WowLookupFetcher {
     }
 }
 
-export { GitHubWowLookupFetcher };
+export {
+    GitHubWowLookupFetcher,
+    WowLookupFetcherFactory,
+};
