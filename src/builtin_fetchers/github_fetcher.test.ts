@@ -4,8 +4,8 @@ import { GitHubWowLookupFetcher } from "./github_fetcher";
 describe("GitHub fetcher tests", () => {
     test("Initialize GitHub fetcher", () => {
         const config: WowLookupFetcherConfig = {
-            githubUser: "test_github_user",
-            githubRepository: "test_github_repository",
+            githubUser: "wowlink",
+            githubRepository: "default-profile",
         };
         const fetcher: GitHubWowLookupFetcher = new GitHubWowLookupFetcher(config);
         expect(fetcher).toBeDefined();

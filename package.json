@@ -2,9 +2,11 @@
   "name": "wow-lookup-fetcher",
   "version": "1.0.0",
   "description": "Wow lookup dictionary fetcher component",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
