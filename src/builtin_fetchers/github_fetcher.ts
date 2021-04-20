@@ -3,7 +3,7 @@ import {
     WowLookupFetcherConfig,
     WowLookupFetchRequest,
     WowLookupFetchResponse,
-} from "wow-interface";
+} from "@wowlink/wow-interface";
 import { Octokit } from "@octokit/rest";
 import yaml from "js-yaml";
 

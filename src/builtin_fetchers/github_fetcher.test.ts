@@ -1,4 +1,4 @@
-import { WowLookupFetcherConfig, WowLookupFetchRequest, WowLookupFetchResponse } from "wow-interface";
+import { WowLookupFetcherConfig, WowLookupFetchRequest, WowLookupFetchResponse } from "@wowlink/wow-interface";
 import { GitHubWowLookupFetcher } from "./github_fetcher";
 
 describe("GitHub fetcher tests", () => {

@@ -2,7 +2,7 @@ import {
     WowLookupFetcher,
     WowLookupFetcherConfig,
     BuiltInLookupFetcherType
-} from "wow-interface";
+} from "@wowlink/wow-interface";
 import { GitHubWowLookupFetcher } from "./builtin_fetchers/github_fetcher";
 
 const WowLookupFetcherFactory = (
