@@ -107,4 +107,4 @@ dist
 lib/
 
 # Credential file
-.npmrc
+/.npmrc
