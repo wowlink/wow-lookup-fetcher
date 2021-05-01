@@ -17,6 +17,8 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PKG_UPLOAD_TOKEN }}" >> .npmrc
       - name: Install dependencies
         run: npm ci
+      - name: Build package
+        run: npm run build
       - name: Release to GitHub Registry
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PKG_UPLOAD_TOKEN }}
