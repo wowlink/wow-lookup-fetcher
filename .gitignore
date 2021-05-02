@@ -105,6 +105,3 @@ dist
 
 # TypeScript build files
 lib/
-
-# Credential file
-/.npmrc
