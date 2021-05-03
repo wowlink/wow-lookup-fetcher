@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^18.5.3",
-    "@wowlink/wow-interface": "^1.1.4",
+    "@wowlink/wow-interface": "^1.1.5",
     "js-yaml": "^4.1.0"
   }
 }
