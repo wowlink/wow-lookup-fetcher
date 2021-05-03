@@ -11,16 +11,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - name: Set GitHub registry credentials
-        run: |
-          echo "@wowlink:registry=https://npm.pkg.github.com" > .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PKG_UPLOAD_TOKEN }}" >> .npmrc
-      - name: Install dependencies
-        run: npm ci
+      - uses: tianhaoz95-actions/dot-npmrc@v1.1.2
+        with:
+          org: "wowlink"
+          token: ${{ secrets.GH_PKG_UPLOAD_TOKEN }}
       - name: Build package
-        run: npm run build
-      - name: Release to GitHub Registry
+        run: npm ci && npm run build
+      - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PKG_UPLOAD_TOKEN }}
           NPM_TOKEN: ${{ secrets.GH_PKG_UPLOAD_TOKEN }}
-        run: npx semantic-release
