@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - uses: tianhaoz95-actions/dot-npmrc@v1.1.2
+      - uses: tianhaoz95-actions/dot-npmrc@v1.2.1
         with:
           org: "wowlink"
           token: ${{ secrets.GH_PKG_UPLOAD_TOKEN }}
