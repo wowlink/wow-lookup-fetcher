@@ -17,10 +17,13 @@ class GitHubWowLookupFetcher implements WowLookupFetcher {
     async fetch(req: WowLookupFetchRequest): Promise<WowLookupFetchResponse> {
         if (this.config_.githubUser && this.config_.githubRepository) {
             const octokit = new Octokit();
+            const configFilename: string =
+                this.config_.githubConfigFilename
+                    ? this.config_.githubConfigFilename : "config.yaml";
             const configResponse = await octokit.rest.repos.getContent({
                 owner: this.config_.githubUser,
                 repo: this.config_.githubRepository,
-                path: "config.yaml",
+                path: configFilename,
             });
             const configStr = Buffer.from(
                 configResponse.data["content"], "base64").toString();
