@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.GH_REPO_ACCESS_TOKEN }}
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3.0.0
         with:
           node-version: 14
       - uses: tianhaoz95-actions/dot-npmrc@v1.1.2
